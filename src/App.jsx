@@ -5,12 +5,13 @@ import { db } from "./data/db";
 
 function App() {
   const [base] = useState(db);
-  const [carrito, setCarrito] = useState(valorinicial);
+ 
 
 
-useEffect(()=>{
-     localStorage.setItem('carrito', JSON.stringify(carrito))
-, [carrito]})
+useEffect(() => {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+}, [carrito]);
+
 
 
 
@@ -19,7 +20,7 @@ function valorinicial() {
   const ini = localStorage.getItem('carrito')
   return localStorage ? JSON.parse(ini) : []
 }
-
+ const [carrito, setCarrito] = useState(valorinicial);
 
 function agregarcarrito(todo) {
 
