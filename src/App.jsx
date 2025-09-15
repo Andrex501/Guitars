@@ -4,18 +4,22 @@ import { useState, useEffect } from "react";
 import { db } from "./data/db";
 
 function valorinicial() {
-  const ini = localStorage.getItem('carrito');
-  // Si hay datos, los parsea. Si no, arranca con array vacío.
-  return ini ? JSON.parse(ini) : [];
+  if (typeof window !== "undefined") {
+    const ini = localStorage.getItem('carrito')
+    return ini ? JSON.parse(ini) : []
+  }
+  return []
 }
+
 
 function App() {
   const [base] = useState(db);
   const [carrito, setCarrito] = useState(valorinicial);
 
-  useEffect(() => {
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-  }, [carrito]);
+useEffect(() => {
+  localStorage.setItem('carrito', JSON.stringify(carrito))
+}, [carrito]);
+
 
   function agregarcarrito(todo) {
     const existeguitarra = carrito.findIndex(pasa => pasa.id === todo.id);
